@@ -1,9 +1,8 @@
-var express = require('express');
-var router = express.Router();
+/**
+ * Created by wangsijun on 2016/3/26.
+ */
+function attachRoutes(app){
+    require('./home')(app);
+};
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-module.exports = router;
+module.exports.attachRoutes = attachRoutes;
