@@ -1,26 +1,30 @@
 /**
  * Created by wangsijun on 2016/3/9.
  */
-//µ¼Èë¹¤¾ß°ü require('node_modulesÀï¶ÔÓ¦µÄÄ£¿é')
-var gulp = require('gulp'),                     //±¾µØ°²×°gulpËùÓÃµ½µÄµØ·½
+//å¯¼å…¥å·¥å…·åŒ… require('node_modulesé‡Œå¯¹åº”çš„æ¨¡å—')
+var gulp = require('gulp'),                     //æœ¬åœ°å®‰è£…gulpæ‰€ç”¨åˆ°çš„åœ°æ–¹
     less = require('gulp-less'),
     minifyCSS = require('gulp-minify-css'),
     config = require('./config');
+var publicStyle = "public/stylesheets/";
+var distStyle = "styles/";
+var filesPath = ["home"];
 
-var folders = {
-    source_file :config.base+"public/stylesheets/*.less",
-    target_file: config.dist+"styles/"
-}
-
-//¶¨Òå¸ötestLessÈÎÎñ£¨×Ô¶¨ÒåÈÎÎñÃû³Æ£©
-gulp.task('tastLess',function(){
-    gulp.src(folders.source_file)    //¸ÃÈÎÎñÕë¶ÔµÄÎÄ¼ş
-        .pipe(less())                                    //¸ÃÈÎÎñµ÷ÓÃµÄÄ£¿é
-        .pipe(minifyCSS())                           //Éú³ÉÑ¹ËõCSSÎÄ¼ş
-        .pipe(gulp.dest(folders.target_file));                //½«»áÔÚsrc/cssÏÂÉú³ÉËùÓĞµÄcssÎÄ¼ş
+//å®šä¹‰ä¸ªtestLessä»»åŠ¡ï¼ˆè‡ªå®šä¹‰ä»»åŠ¡åç§°ï¼‰
+gulp.task('css',['scripts'],function(){
+    var stream;
+    for(var index =0; index< filesPath.length ; index++) {
+        var stylePath = publicStyle+filesPath[index]+'/';
+        var distPath = distStyle+filesPath[index]+'/';
+        stream = gulp.src(config.base + stylePath + "*.less")    //è¯¥ä»»åŠ¡é’ˆå¯¹çš„æ–‡ä»¶
+            .pipe(less())                                    //è¯¥ä»»åŠ¡è°ƒç”¨çš„æ¨¡å—
+            .pipe(minifyCSS())                           //ç”Ÿæˆå‹ç¼©CSSæ–‡ä»¶
+            .pipe(gulp.dest(config.dist + distPath));                //å°†ä¼šåœ¨src/cssä¸‹ç”Ÿæˆæ‰€æœ‰çš„cssæ–‡ä»¶
+    }
+    return stream;
 });
 
-//gulp.task('default',['tastLess']);   //¶¨ÒåÄ¬ÈÏÈÎÎñ
-//gulp.task(name[, deps], fn) ¶¨ÒåÈÎÎñ  name£ºÈÎÎñÃû³Æ deps£ºÒÀÀµÈÎÎñÃû³Æ fn£º»Øµ÷º¯Êı
-//gulp.src(globs[, options]) Ö´ĞĞÈÎÎñ´¦ÀíµÄÎÄ¼ş  globs£º´¦ÀíµÄÎÄ¼şÂ·¾¶(×Ö·û´®»òÕß×Ö·û´®Êı×é)
-//gulp.dest(path[, options]) ´¦ÀíÍêºóÎÄ¼şÉú³ÉÂ·¾¶
+//gulp.task('default',['tastLess']);   //å®šä¹‰é»˜è®¤ä»»åŠ¡
+//gulp.task(name[, deps], fn) å®šä¹‰ä»»åŠ¡  nameï¼šä»»åŠ¡åç§° depsï¼šä¾èµ–ä»»åŠ¡åç§° fnï¼šå›è°ƒå‡½æ•°
+//gulp.src(globs[, options]) æ‰§è¡Œä»»åŠ¡å¤„ç†çš„æ–‡ä»¶  globsï¼šå¤„ç†çš„æ–‡ä»¶è·¯å¾„(å­—ç¬¦ä¸²æˆ–è€…å­—ç¬¦ä¸²æ•°ç»„)
+//gulp.dest(path[, options]) å¤„ç†å®Œåæ–‡ä»¶ç”Ÿæˆè·¯å¾„

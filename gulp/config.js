@@ -2,12 +2,21 @@
  * Created by wangsijun on 2016/3/11.
  */
 module.exports = {
-    base: './',             //»ù´¡Ä¿Â¼
-    dist: './src/',         //Ñ¹ËõÄ¿Â¼
-    vendorjs: [               //¹©Ó¦ÉÌÎÄ¼þ
-        "./node_modules/jquery/dist/jquery.min.js"
+    base: './',             //åŸºç¡€ç›®å½•
+    dist: './src/',         //åŽ‹ç¼©ç›®å½•
+    vendorjs: [               //ç¬¬ä¸‰æ–¹æ–‡ä»¶
+        "./node_modules/jquery/dist/jquery.min.js",
+        "./node_modules/bootstrap/dist/js/bootstrap.js"
     ],
     vendorcss: [
-        "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "./node_modules/bootstrap/dist/css/bootstrap-theme.min.css"
+    ],
+    vendorassets:[
+        "./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.eot",
+        "./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.svg",
+        "./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf",
+        "./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff",
+        "./node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"
     ]
 }
