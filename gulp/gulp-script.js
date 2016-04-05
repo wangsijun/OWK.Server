@@ -2,7 +2,7 @@
  * Created by wangsijun on 2016/4/2.
  */
 var gulp = require('gulp');
-var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 var config = require('./config');
 var publicScripts = "public/javascripts/";
 var distScripts = "scripts/";
@@ -14,7 +14,7 @@ gulp.task('scripts',['images'], function() {
         var stylePath = publicScripts+filesPath[index]+'/';
         var distPath = distScripts+filesPath[index]+'/';
         stream = gulp.src(config.base +stylePath+ "*.js")
-            .pipe(concat('script.min.js'))
+            .pipe(uglify())
             .pipe(gulp.dest(config.dist+distPath));
     }
     return stream;
