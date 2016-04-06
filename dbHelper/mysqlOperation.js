@@ -17,6 +17,7 @@ var mysqlOperation = function() {
 };
 
 function query(sql,params,callback){
+    conn = mysql.createConnection(conn.config);
     conn.connect();
     conn.query(sql, function (err, rows, fields) {
         if (err)
